@@ -1,0 +1,19 @@
+{
+  "name": "yelp-camp-x",
+  "version": "1.0.0",
+  "description": "A Node.js-powered Campground Web App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/happyzhanls/yelp-camp-x.git"
+  },
+  "author": "zhanls",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/happyzhanls/yelp-camp-x/issues"
+  },
+  "homepage": "https://github.com/happyzhanls/yelp-camp-x#readme"
+}
