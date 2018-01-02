@@ -1,12 +1,12 @@
 <% include ../partials/header %>
 
-<div class="container-fluid">
+<div class="container-fluid center-div">
     <h2 class="text-center">Edit your comment below!</h1>
-    <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=put" method="post">
+    <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=put" method="post" class="mx-auto" style="width: 500px;">
       <div class="form-group">
         <input type="text" class="form-control" name="comment[text]" value="<%= comment.text %>">
       </div>
-      </div class="form-group">
+      <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Submit</button>
       </div>
       <div class="form-group">
@@ -14,6 +14,5 @@
       </div>
     </form>
 </div>
-
 
 <% include ../partials/footer %>
