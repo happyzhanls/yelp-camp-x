@@ -1,0 +1,72 @@
+<% include ../partials/header %>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                <a class="list-group-item active">YelpCamp</a>
+                <a class="list-group-item" href="#">More info</a>
+                <a class="list-group-item" href="#">More info</a>
+                <a class="list-group-item" href="#">More info</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card mb-3">
+                <img class="card-img-top" src=<%= campground.image %> alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><%= campground.name %></h5>
+                    <p class="card-text"><%= campground.description %></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <!-- Create a new comment  -->
+                    <form action="/campgrounds/<%= campground._id %>/comments" method="post">
+                        <div class="form-group">
+                            <label for="comment">COMMENTS:</label>
+                            <textarea class="form-control" rows="3" id="comment" name="comment[text]" placeholder="Tell us what you're thinking!"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="reset" class="btn btn-sm btn-dark float-right ml-3">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-dark float-right">Comment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="card mb-3">
+                <ul class="list-group list-group-flush">
+                    <% campground.comments.forEach(function(comment) { %>
+                        <li class="list-group-item">
+                            <strong><%= comment.author.username %></strong>
+                            <span style="font-size:0.7rem;">1 minute ago</span>
+                            <div class="row">
+                                <div class="col-10">
+                                    <p><%= comment.text %></p>
+                                </div>
+                                <!-- mark: give authentication to editing and deleting comments -->
+                                <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                                <div class="col-2">
+                                    <div class="btn-group float-right dropup">
+                                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="btn btn-warning dropdown-item" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                                            <form action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=delete" method="post">
+                                                <input type="submit" class="btn btn-danger dropdown-item" value="Delete"></input>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
