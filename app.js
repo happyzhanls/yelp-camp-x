@@ -11,11 +11,12 @@ var express = require("express"),
 // require routes
 var campgroundRoutes = require("./routes/campgrounds"),
     commentRoutes    = require("./routes/comments"),
-    indexRoutes       = require("./routes/index");
+    indexRoutes      = require("./routes/index");
 
 // setup mongodb connection.
 mongoose.connect('mongodb://localhost/YelpCamp');
-mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 // view engine, bodyParser, methodOverride
 app.set("view engine", "ejs");
