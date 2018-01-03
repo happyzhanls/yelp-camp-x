@@ -3,7 +3,7 @@ var Comment = require("./models/comment"),
     User = require("./models/user");
 
 function seedsInit() {
-  Campground.remove({}, postRemoveCampground);
+  // Campground.remove({}, postRemoveCampground);
 }
 
 function postRemoveCampground (err) {
