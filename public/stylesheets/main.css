@@ -1,6 +1,11 @@
 body {
-    padding-top: 70px;
-    background-color: lightgray;
+  padding-top: 70px;
+}
+
+/* Google Maps */
+#map {
+    height: 400px;
+    width: 100%;
 }
 
 .center-div {
@@ -12,4 +17,40 @@ body {
   left: 0;
   width: 600px;
   height: 300px;
+}
+
+.img {
+  margin-bottom: 0px;
+  opacity: 0.95;
+  background: #000 url("https://images.unsplash.com/photo-1477696957384-3b1d731c4cff?auto=format&fit=crop&w=1950&q=80") top center no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  overflow: hidden;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:1;
+}
+
+.jumbotron {
+  position:relative;
+  padding-top:50px;
+  padding-bottom:50px;
+}
+
+.jumbotron .container {
+  position:relative;
+  z-index:2;
+}
+
+.jumbotron .text {
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .jumbotron {
+    padding-top:20px;
+    padding-bottom:20px;
+  }
 }
