@@ -2,24 +2,24 @@ var express = require("express"),
     router = express.Router();
     
 var Campground = require("../models/campground");
-
 var middleware = require("../middleware");
+var geocoder = require("geocoder");
 
 // CAMPGROUNDS INDEX
 router.get("/", function(req, res) {
     // Get all cgs from DB
-    Campground.find({}, function(err, cgs) {
+    Campground.find({}, function(err, campgrounds) {
         if(err) {
             console.log(err);
         } else {
-            res.render("campgrounds/index", {campgrounds: cgs});
+            res.render("campgrounds/index", {campgrounds: campgrounds});
         }
     });
 });
 
 // CAMPGROUNDS CREATE
 router.post("/", middleware.isLoggedIn, function(req, res) {
-    // 1. gets data from form
+    // gets data from form and add to a new campground 
     var name = req.body.name;
     var image = req.body.imageURL;
     var desc = req.body.description;
@@ -27,14 +27,29 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
         id: req.user._id,
         username: req.user.username
     };
-    var newCampground = {name: name, image: image, description: desc, author: author};
-    // 2. add to the campground model
-    Campground.create(newCampground, function(err, ncgs) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.redirect("/campgrounds");
-        }
+    geocoder.geocode(req.body.location, function(err, data) {
+        if(err) return console.log(err);
+        var lat = data.results[0].geometry.location.lat;
+        var lng = data.results[0].geometry.location.lng;
+        var location = data.results[0].formatted_address;
+        // create a newCampground object
+        var newCampground = {
+            name: name, 
+            image: image, 
+            description: desc, 
+            location: location,
+            lat: lat,
+            lng: lng,
+            author: author
+        };
+        // add to the campground model
+        Campground.create(newCampground, function(err, ncgs) {
+            if(err) {
+                console.log(err);
+            } else {
+                res.redirect("/campgrounds");
+            }
+        });
     });
 });
 
