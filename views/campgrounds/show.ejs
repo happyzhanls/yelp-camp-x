@@ -24,7 +24,7 @@
                     <form action="/campgrounds/<%= campground._id %>/comments" method="post">
                         <div class="form-group">
                             <label for="comment">COMMENTS:</label>
-                            <textarea class="form-control" rows="3" id="comment" name="comment[text]" placeholder="Tell us what you're thinking!"></textarea>
+                            <textarea class="form-control" rows="3" id="comment" name="comment[text]" placeholder="Tell us what you're thinking!" required></textarea>
                         </div>
                         <div class="form-group">
                             <button type="reset" class="btn btn-sm btn-dark float-right ml-3">Cancel</button>
@@ -39,7 +39,7 @@
                     <% campground.comments.forEach(function(comment) { %>
                         <li class="list-group-item">
                             <strong><%= comment.author.username %></strong>
-                            <span style="font-size:0.7rem;">1 minute ago</span>
+                            <span style="font-size:0.7rem;"><%= moment(comment.createdAt).fromNow() %></span>
                             <div class="row">
                                 <div class="col-10">
                                     <p><%= comment.text %></p>
