@@ -11,12 +11,18 @@ var campgroundSchema = new mongoose.Schema({
         },
         username: String,
     },
+    
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
         }
-    ]
+    ],
+    
+    createdAt: { 
+        type: Date, 
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model("Campground", campgroundSchema);
