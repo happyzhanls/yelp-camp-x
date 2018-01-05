@@ -20,7 +20,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
                     createdCm.author.id = req.user._id;
                     createdCm.author.username = req.user.username;
                     createdCm.save();
-                    foundCg.comments.push(createdCm);
+                    foundCg.comments.push(createdCm._id);
                     foundCg.save();
                     res.redirect("/campgrounds/" + foundCg._id);
                 }
@@ -54,7 +54,6 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res) 
     });
 });
 
-
 // COMMENTS DESTROY
 router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, res) {
     Comment.findByIdAndRemove(req.params.comment_id, function(err) {
@@ -65,6 +64,5 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
         }
     });
 });
-
 
 module.exports = router;

@@ -4,6 +4,7 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     passport = require("passport"),
+    moment = require("moment"),
     methodOverride = require("method-override"),
     User = require("./models/user"),
     seeds = require("./seeds");
@@ -14,15 +15,15 @@ var campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
 
 // setup mongodb connection.
-mongoose.connect('mongodb://localhost/YelpCamp');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+var databaseURL = process.env.DATABASEURL || "mongodb://localhost/YelpCamp";
+mongoose.connect(databaseURL);
 
-// view engine, bodyParser, methodOverride
+// view engine, bodyParser, methodOverride, moment
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(__dirname + "/public/"));
+app.locals.moment = moment;
 
 // seed the database
 seeds.init();

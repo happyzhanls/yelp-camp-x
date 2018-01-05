@@ -1,27 +1,24 @@
 <% include ../partials/header %>
 
-<div class="jumbotron">
-  <div class="img"></div>
-  <div class="container">
-    <div class="text">
-      <h1 class="display-4">Welcome to the campgrounds!</h1>
-      <p class="lead">View the campgrounds from all over the world!</p>
-    </div>
-    <a class="btn btn-primary mx-auto" href="/campgrounds/new">Add a new campground</a>      
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to the campgrounds!</h1>
+    <p class="lead">View the campgrounds from all over the world!</p>
+    <a class="btn btn-success mx-auto" href="/campgrounds/new">Add a new campground</a>      
     <hr class="my-4">
-    <div class="row">
+    <div class="card-deck">
       <% campgrounds.forEach(function(campground, index) { %>
         <% if(index > 3) { %>
           <div class="w-100"></div>
         <% } %>
-          <div class="col-sm-3">
-            <div class="card text-center">
-              <img class="card-img-top" src=<%= campground.image %> alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title"><%= campground.name %></h4>
-                <h6 class="card-subtitle mb-3 text-muted">Submitted by <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></h6>
-                <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">More info</a>
-              </div>
+          <div class="card border-dark text-center">
+            <img class="card-img-top img-fluid" src=<%= campground.image %> alt="Card image cap" width="400">
+            <div class="card-body">
+              <h4 class="card-title"><%= campground.name %></h4>
+              <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">More info</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">submitted <%= moment(campground.createdAt).fromNow() %> by <%= campground.author.username %></small>
             </div>
           </div>
       <% }) %>
