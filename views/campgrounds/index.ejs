@@ -12,9 +12,9 @@
           <div class="w-100"></div>
         <% } %>
           <div class="card border-dark text-center">
-            <img class="card-img-top img-fluid" src=<%= campground.image %> alt="Card image cap" width="400">
+            <img class="card-img-top" src=<%= campground.image %> alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title"><%= campground.name %></h4>
+              <h5 class="card-title"><%= campground.name.substring(0, 20) %></h5>
               <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">More info</a>
             </div>
             <div class="card-footer">
