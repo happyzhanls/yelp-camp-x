@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+
+<div class="container-fluid" id="center-div">
+  <div class="border-form">
+    
+  </div>
+    <h2 class="text-center">Edit your campground below</h1>
+    <form action="/campgrounds/<%= campground._id %>?_method=put" method="post" class="mx-auto" style="width: 500px;">
+      <div class="form-group">
+        <label>
+          Campground Name
+          <input type="text" class="form-control" value="<%= campground.name %>" name="campground[name]" required>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          Campground Image
+          <input type="file" class="form-control-file" value="<%= campground.image %>" name="campground[image]" accept="image/*" required>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          Campground Description
+          <textarea row="4" class="form-control" value="<%= campground.description %>" name="campground[description]" required></textarea>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          Campground Location
+          <input class="form-control" type="text" value="<%= campground.location %>" name="campground[location]" required>
+        </label>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block rounded">Submit</button>
+      </div>
+      <div class="form-group">
+        <a href="/campgrounds/<%= campground._id %>" class="btn btn-secondary btn-block rounded" role="button" aria-pressed="true">Go Back</a>
+      </div>
+    </form>
+</div>
+
+<% include ../partials/footer %>

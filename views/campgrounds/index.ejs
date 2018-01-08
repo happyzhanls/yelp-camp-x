@@ -6,23 +6,27 @@
     <p class="lead">View the campgrounds from all over the world!</p>
     <a class="btn btn-success mx-auto" href="/campgrounds/new">Add a new campground</a>      
     <hr class="my-4">
-    <div class="card-deck">
+    <div class="row">
       <% campgrounds.forEach(function(campground, index) { %>
-        <% if(index > 3) { %>
-          <div class="w-100"></div>
+        <% if(index % 4 === 0 && index !== 0) {%>
+              <div class="w-100"></div>
         <% } %>
-          <div class="card border-dark text-center">
+        <div class="col-3">
+          <div class="card">
             <img class="card-img-top" src=<%= campground.image %> alt="Card image cap" height="200">
             <div class="card-body">
-              <h5 class="card-title"><%= campground.name.substring(0, 20) %>...</h5>
-              <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">More info</a>
+              <h4 class="card-title"><%= campground.name %></h4>
+              <h5 class="card-subtitle mb-2 text-muted"><em>--Submitted by <%= campground.author.username %></em></h5>
+              <p class="card-text"><%= campground.description.substring(0, 20) %>...</p>
+              <a href="/campgrounds/<%= campground._id %>" class="btn btn-info mx-auto">more info</a>
             </div>
             <div class="card-footer">
-              <small class="text-muted">submitted <%= moment(campground.createdAt).fromNow() %> by <%= campground.author.username %></small>
+              <small class="text-muted">Last Updated <%= moment(campground.createdAt).fromNow() %></small>
             </div>
           </div>
+        </div>
       <% }) %>
-    </div>
+    </div>  
   </div>
 </div>
 
