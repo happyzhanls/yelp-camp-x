@@ -13,12 +13,20 @@
         <% } %>
         <div class="col-3">
           <div class="card">
-            <img class="card-img-top" src=<%= campground.image %> alt="Card image cap" height="200">
+            <img class="card-img-top" src=<%= campground.image %> alt="Card image cap" height="222">
             <div class="card-body">
-              <h4 class="card-title"><%= campground.name %></h4>
-              <h5 class="card-subtitle mb-2 text-muted"><em>--Submitted by <%= campground.author.username %></em></h5>
-              <p class="card-text"><%= campground.description.substring(0, 20) %>...</p>
-              <a href="/campgrounds/<%= campground._id %>" class="btn btn-info mx-auto">more info</a>
+              <h4 class="card-title text-center">
+                <% if(campground.name.length > 14) { %>
+                <%= campground.name.substring(0, 11) %>...
+                <% } else { %>
+                <%= campground.name %>
+                <% } %>
+              </h4>
+              <h5 class="card-subtitle mb-2 text-muted" style="font-size: .7rem"><em>-- Submitted by <%= campground.author.username %></em></h5>
+              <p class="card-text" style="font-size: .8rem"><%= campground.description.substring(0, 26) %>...</p>
+              <div class="row justify-content-center">
+                <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">more info</a>
+              </div>
             </div>
             <div class="card-footer">
               <small class="text-muted">Last Updated <%= moment(campground.createdAt).fromNow() %></small>

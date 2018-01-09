@@ -1,5 +1,5 @@
 body {
-  margin-top: 70px;
+  margin: 70px auto;
 }
 
 /* Google Maps */
@@ -22,4 +22,13 @@ body {
 
 #inline-form {
   display: inline;
+}
+
+.fixed-bottom {
+  color: white;
+  padding: .5rem 1rem;
+}
+
+.icon {
+  color: white;
 }
