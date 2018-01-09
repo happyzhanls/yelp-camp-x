@@ -29,3 +29,8 @@ A Node.js-powered Campground Web App with dynamic features that allows users to 
 * Install and configure mongoose
 * Setup campground model
 * Use campground model inside of our routes!
+
+### Add Footer
+* Add my personal Copyright
+* Add social icons
+* Add back to top icon and button
