@@ -8,18 +8,6 @@ body {
     width: 100%;
 }
 
-/*Vertically Centered Form*/
-#center-div {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 600px;
-  height: 300px;
-}
-
 #inline-form {
   display: inline;
 }

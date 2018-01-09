@@ -1,34 +1,25 @@
 <% include ../partials/header %>
 
-<div class="container-fluid" id="center-div">
-  <div class="border-form">
-    
-  </div>
+<div class="container">
     <h2 class="text-center">Edit your campground below</h1>
     <form action="/campgrounds/<%= campground._id %>?_method=put" method="post" class="mx-auto" style="width: 500px;">
       <div class="form-group">
-        <label>
-          Campground Name
-          <input type="text" class="form-control" value="<%= campground.name %>" name="campground[name]" required>
-        </label>
+        <label for="a">Campground Name</label>
+        <input id="a" type="text" class="form-control" value="<%= campground.name %>" name="campground[name]" required>
       </div>
       <div class="form-group">
-        <label>
-          Campground Image
-          <input type="file" class="form-control-file" value="<%= campground.image %>" name="campground[image]" accept="image/*" required>
-        </label>
+        <label for="b">Campground Image</label>
+        <input id="b" type="text" class="form-control" value="<%= campground.image %>" name="campground[image]" 
+               required pattern="(http)?s?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg)" 
+               title="The URL must be an image url">
       </div>
       <div class="form-group">
-        <label>
-          Campground Description
-          <textarea row="4" class="form-control" value="<%= campground.description %>" name="campground[description]" required></textarea>
-        </label>
+        <label for="c">Campground Description</label>
+        <textarea id="c" class="form-control" name="campground[description]" required><%= campground.description %></textarea>
       </div>
       <div class="form-group">
-        <label>
-          Campground Location
-          <input class="form-control" type="text" value="<%= campground.location %>" name="campground[location]" required>
-        </label>
+        <label for="d">Campground Location</label>
+        <input id="d" class="form-control" type="text" value="<%= campground.location %>" name="campground[location]" required>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block rounded">Submit</button>
