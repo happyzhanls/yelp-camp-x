@@ -23,12 +23,3 @@ body {
 #inline-form {
   display: inline;
 }
-
-.fixed-bottom {
-  color: white;
-  padding: .5rem 1rem;
-}
-
-.icon {
-  color: white;
-}
