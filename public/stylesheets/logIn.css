@@ -70,12 +70,10 @@ body {
 
 .login input {
   box-sizing: border-box;
-  display: block;
   width: 100%;
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
   padding: 16px;
-  outline: 0;
   font-family: inherit;
   font-size: 0.95em;
 }
@@ -94,6 +92,8 @@ body {
 }
 
 .login input[type="submit"] {
+  width: 40%;
+  margin-right: 10%;
   background: #28d;
   border-color: transparent;
   color: #fff;
@@ -104,7 +104,15 @@ body {
   background: #17c;
 }
 
-/* Buttons' focus effect */
-.login input[type="submit"]:focus {
-  border-color: #05a;
+.login input[type="reset"] {
+  width: 40%;
+  margin-left: 10%;
+  background: #777777;
+  border-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.login input[type="reset"]:hover {
+  background: #666666;
 }
