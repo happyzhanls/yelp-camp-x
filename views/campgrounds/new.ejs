@@ -1,36 +1,36 @@
 <% include ../partials/header %>
 
 <div class="container">
-    <h2 class="text-center">Create a new campground</h2>
-    <form action="/campgrounds" method="post" style="width: 500px;" class="mx-auto">
-      <div class="form-group">
-        <label for="a">Campground Name</label>
-        <input id="a" type="text" class="form-control" placeholder="Enter your campground name" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="b">Campground Image</label>
-        <input id="b" type="text" 
-               class="form-control" 
-               placeholder="Enter your campground url" 
-               name="image" 
-               required pattern="(http)?s?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg)" 
-               title="The URL must be an image url">
-      </div>
-      <div class="form-group">
-        <label for="c">Campground Description</label>
-        <textarea id="c" class="form-control" placeholder="Enter your campground description" name="description" required title="The description cannot be empty"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="d">Campground Location</label>
-        <input id="d" class="form-control" type="text" placeholder="Enter your campground location, eg: Yosemite National Park, CA" name="location" required>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block rounded">Submit</button>
-      </div>
-      <div class="form-group">
-        <a href="/campgrounds" class="btn btn-secondary btn-block rounded" role="button" aria-pressed="true">Go Back</a>
-      </div>
-    </form>
+  <h2 class="text-center">Create a new campground</h2>
+  <form action="/campgrounds" method="post" class="mx-auto customized-form">
+    <div class="form-group">
+      <label for="a">Campground Name</label>
+      <input id="a" type="text" class="form-control" placeholder="Enter your campground name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="b">Campground Image</label>
+      <input id="b" type="text" 
+             class="form-control" 
+             placeholder="Enter your campground url" 
+             name="image" 
+             required pattern="(http)?s?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg)" 
+             title="The URL must be an image url">
+    </div>
+    <div class="form-group">
+      <label for="c">Campground Description</label>
+      <textarea id="c" class="form-control" placeholder="Enter your campground description" name="description" required title="The description cannot be empty"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="d">Campground Location</label>
+      <input id="d" class="form-control" type="text" placeholder="Enter your campground location, eg: Yosemite National Park, CA" name="location" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block rounded">Submit</button>
+    </div>
+    <div class="form-group">
+      <a href="/campgrounds" class="btn btn-secondary btn-block rounded" role="button" aria-pressed="true">Go Back</a>
+    </div>
+  </form>
 </div>
 
 <% include ../partials/footer %>

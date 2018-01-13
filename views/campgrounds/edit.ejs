@@ -2,7 +2,7 @@
 
 <div class="container">
     <h2 class="text-center">Edit your campground below</h1>
-    <form action="/campgrounds/<%= campground._id %>?_method=put" method="post" class="mx-auto" style="width: 500px;">
+    <form action="/campgrounds/<%= campground._id %>?_method=put" method="post" class="mx-auto customized-form">
       <div class="form-group">
         <label for="a">Campground Name</label>
         <input id="a" type="text" class="form-control" value="<%= campground.name %>" name="campground[name]" required>
