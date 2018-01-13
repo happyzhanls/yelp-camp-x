@@ -6,31 +6,19 @@
     <p class="lead">View the campgrounds from all over the world!</p>
     <a class="btn btn-success mx-auto" href="/campgrounds/new">Add a new campground</a>      
     <hr class="my-4">
-    <div class="row">
-      <% campgrounds.forEach(function(campground, index) { %>
-        <% if(index % 4 === 0 && index !== 0) {%>
-              <div class="w-100"></div>
-        <% } %>
-        <div class="col-3">
-          <div class="card">
-            <img class="card-img-top" src=<%= campground.image %> alt="Card image cap" height="222">
-            <div class="card-body">
-              <h4 class="card-title text-center">
-                <% if(campground.name.length > 14) { %>
-                <%= campground.name.substring(0, 11) %>...
-                <% } else { %>
-                <%= campground.name %>
-                <% } %>
-              </h4>
-              <h5 class="card-subtitle mb-2 text-muted" style="font-size: .7rem"><em>-- Submitted by <%= campground.author.username %></em></h5>
-              <p class="card-text" style="font-size: .8rem"><%= campground.description.substring(0, 26) %>...</p>
-              <div class="row justify-content-center">
-                <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">more info</a>
-              </div>
+    <div class="card-columns">
+      <% campgrounds.forEach(function(campground) { %>
+        <div class="card m-2">
+          <img class="card-img-top" src=<%= campground.image %> alt="Card image cap">
+          <div class="card-body">
+            <h4 class="card-title text-center"><%= campground.name %></h4>
+            <h5 class="card-subtitle mb-2 text-muted" style="font-size: .7rem"><em>-- Submitted by <%= campground.author.username %></em></h5>
+            <div class="row justify-content-center">
+              <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">more info</a>
             </div>
-            <div class="card-footer">
-              <small class="text-muted">Last Updated <%= moment(campground.createdAt).fromNow() %></small>
-            </div>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last Updated <%= moment(campground.createdAt).fromNow() %></small>
           </div>
         </div>
       <% }) %>
