@@ -1,5 +1,5 @@
 body {
-  margin: 70px auto;
+  margin-top: 70px;
 }
 
 /* Google Maps */
@@ -10,4 +10,8 @@ body {
 
 #inline-form {
   display: inline;
+}
+
+.customized-form {
+  width: 500px;
 }
