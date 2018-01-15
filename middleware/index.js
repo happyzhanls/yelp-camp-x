@@ -20,7 +20,6 @@ middlewareObj.checkCampgroundUser = function (req, res, next) {
 };
 
 middlewareObj.checkCommentUser = function (req, res, next) {
-  this.checkCamproundUser(req, res, next);
   Comment.findById(req.params.comment_id, function (err, foundComment){
     if (err || !foundComment) {
       req.flash("failure", "Sorry, that comment does NOT exist!");

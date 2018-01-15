@@ -43,6 +43,7 @@ router.put("/:comment_id", middleware.isLoggedIn, middleware.checkCommentUser, f
     if (err) {
       res.redirect("back");
     } else {
+      req.flash("success", "The comment has been updated successfully!");
       res.redirect("/campgrounds/" + req.params.id);
     }
   });
@@ -54,6 +55,7 @@ router.delete("/:comment_id", middleware.isLoggedIn, middleware.checkCommentUser
     if (err) {
       res.redirect("back");
     } else {
+      req.flash("success", "The comment has been deleted successfully!");
       res.redirect("/campgrounds/" + req.params.id);
     }
   });

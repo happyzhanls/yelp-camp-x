@@ -84,6 +84,7 @@ router.put("/:id", middleware.isLoggedIn, middleware.checkCampgroundUser, functi
     if (err) {
       res.redirect("back");
     } else {
+      req.flash("success", "The campground has been updated successfully!");
       res.redirect("/campgrounds/" + req.params.id);
     }
   });
@@ -95,6 +96,7 @@ router.delete("/:id", middleware.isLoggedIn, middleware.checkCampgroundUser, fun
     if (err) {
       res.redirect("back");
     } else {
+      req.flash("success", "The campground has been deleted successfully!");
       res.redirect("/campgrounds");
     }
   });
