@@ -48,7 +48,6 @@ router.post("/logIn", function (req, res, next) {
       var redirectTo = req.session.redirectTo ? req.session.redirectTo : "/campgrounds";
       delete req.session.redirectTo;
       redirectTo = redirectTo.replace("/comments", "");
-      console.log(redirectTo);
       req.flash("success", "You have logged in successfully!");
       return res.redirect(redirectTo);
     });
