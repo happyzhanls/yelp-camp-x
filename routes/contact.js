@@ -13,7 +13,7 @@ router.post("/send", function(req, res) {
     if (!captcha) {
       console.log("This is wrong!");
       console.log(req.body);
-      req.flash("error", "Please select captcha");
+      req.flash("failure", "Please select captcha");
       return res.redirect("back");
     }
     // secret key
@@ -48,7 +48,7 @@ router.post("/send", function(req, res) {
       smtpTransport.sendMail(mailOptions, function(err, info){
         if(err) {
           console.log(err);
-          req.flash("error", "Something went wrong... Please try again later!");
+          req.flash("failure", "Something went wrong... Please try again later!");
           res.redirect("/contact");
         } else {
           req.flash("success", "Your email has been sent, I will respond within 24 hours.");
