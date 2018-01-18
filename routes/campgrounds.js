@@ -8,10 +8,11 @@ var geocoder = require("geocoder");
 // configure multer
 var multer = require('multer');
 var storage = multer.diskStorage({
-  filename: function(req, file, callback) {
+  filename: function (req, file, callback) {
     callback(null, Date.now() + file.originalname);
   }
 });
+
 var imageFilter = function (req, file, cb) {
     // accept image files only
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
@@ -23,8 +24,8 @@ var upload = multer({ storage: storage, fileFilter: imageFilter});
 
 var cloudinary = require('cloudinary');
 cloudinary.config({ 
-  cloud_name: 'learntocodeinfo', 
-  api_key: process.env.CLOUDINARY_API_KEY, 
+  cloud_name: 'do77agwvb', 
+  api_key: 561955665388656, 
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
@@ -47,42 +48,32 @@ router.get("/new", middleware.isLoggedIn, function (req, res) {
 
 // CAMPGROUNDS CREATE
 router.post("/", middleware.isLoggedIn, upload.single('image'), function (req, res) {
-  // gets data from form and add to a new campground 
-  var name = req.body.name;
-  var desc = req.body.description;
-  // add author to campground
-  var author = {
-    id: req.user._id,
-    username: req.user.username
-  };
-  
-  geocoder.geocode(req.body.location, function (err, data) {
+  // geocoder configuration
+  geocoder.geocode(req.body.campground.location, function (err, data) {
     if (err) return console.log(err);
-    var lat = data.results[0].geometry.location.lat;
-    var lng = data.results[0].geometry.location.lng;
-    var location = data.results[0].formatted_address;
-    cloudinary.uploader.upload(req.file.path, function(result) {
-      // add cloudinary url for the image to the campground object under image property
-      var image = result.secure_url;
-      // create a newCampground object
-      var newCampground = {
-        name: name, 
-        image: image, 
-        description: desc, 
-        location: location,
-        lat: lat,
-        lng: lng,
-        author: author
-      };
-      // add to the campground model
-      Campground.create(newCampground, function(err, campground) {
-        if (err) {
-          req.flash('failure', err.message);
-          return res.redirect('back');
-        }
-        res.redirect('/campgrounds/' + campground.id);
-      });
-    });
+    req.body.campground.lat = data.results[0].geometry.location.lat;
+    req.body.campground.lng = data.results[0].geometry.location.lng;
+    req.body.campground.location = data.results[0].formatted_address;
+  });  
+  
+  // cloudinary configuration
+  cloudinary.uploader.upload(req.file.path, function (result) {
+    // add cloudinary url for the image to the campground object under image property
+    req.body.campground.image = result.secure_url;
+    // add author to campground
+    req.body.campground.author = {
+      id: req.user._id,
+      username: req.user.username
+    };
+  });
+  
+  // add to the campground model
+  Campground.create(req.body.campground, function (err, campground) {
+    if (err) {
+      req.flash('failure', err.message);
+      return res.redirect('back');
+    }
+    res.redirect('/campgrounds/' + campground.id);
   });
 });
 
