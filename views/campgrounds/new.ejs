@@ -2,19 +2,14 @@
 
 <div class="container">
   <h2 class="text-center">Create a new campground</h2>
-  <form action="/campgrounds" method="post" class="mx-auto customized-form">
+  <form action="/campgrounds" method="post" class="mx-auto customized-form" enctype="multipart/form-data">
     <div class="form-group">
       <label for="a">Campground Name</label>
       <input id="a" type="text" class="form-control" placeholder="Enter your campground name" name="name" required>
     </div>
     <div class="form-group">
       <label for="b">Campground Image</label>
-      <input id="b" type="text" 
-             class="form-control" 
-             placeholder="Enter your campground url" 
-             name="image" 
-             required pattern="(http)?s?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg)" 
-             title="The URL must be an image url">
+      <input type="file" id="image" name="image" accept="image/*" required>
     </div>
     <div class="form-group">
       <label for="c">Campground Description</label>
