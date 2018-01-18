@@ -12,6 +12,7 @@
         <input id="b" type="text" class="form-control" value="<%= campground.image %>" name="campground[image]" 
                required pattern="(http)?s?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg)" 
                title="The URL must be an image url">
+        <input type="file" id="image" name="image" accept="image/*" required>
       </div>
       <div class="form-group">
         <label for="c">Campground Description</label>
