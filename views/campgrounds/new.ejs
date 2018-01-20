@@ -9,7 +9,7 @@
     </div>
     <div class="form-group">
       <label for="b">Campground Image</label>
-      <input id="b" type="file" class="form-control" name="campground[image]" accept="image/*" required>
+      <input id="b" type="file" class="form-control" name="image" accept="image/*" required>
     </div>
     <div class="form-group">
       <label for="c">Campground Description</label>
@@ -19,10 +19,15 @@
       <label for="d">Campground Location</label>
       <input id="d" type="text" class="form-control" placeholder="Enter your campground location, eg: Yosemite National Park, CA" name="campground[location]" required>
     </div>
-    <div class="form-group col-4 offset-1">
-      <button type="submit" class="btn btn-primary btn-block rounded">Submit</button>
+    <div class="form-row">
+      <div class="form-group col-4 offset-1">
+        <button type="submit" class="btn btn-primary btn-block rounded">Submit</button>
+      </div>
+      <div class="form-group col-4 offset-2">
+        <button type="reset" class="btn btn-secondary btn-block rounded">Cancel</button>
+      </div>
     </div>
-    <div class="form-group col-4 offset-1">
+    <div class="form-group">
       <a href="/campgrounds" class="btn btn-secondary btn-block rounded" role="button" aria-pressed="true">Go Back</a>
     </div>
   </form>
