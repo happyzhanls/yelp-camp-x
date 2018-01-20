@@ -14,7 +14,7 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
     } else {
       Comment.create(req.body.comment, function (err, createdCm) {
         if (err) {
-          console.log(err);
+          return console.log(err);
         } else {
           // find the current username an add it to comment
           createdCm.author.id = req.user._id;
