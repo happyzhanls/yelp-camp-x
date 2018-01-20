@@ -27,7 +27,7 @@ var cloudinary = require('cloudinary');
 cloudinary.config({ 
   cloud_name: 'do77agwvb', 
   api_key: '561955665388656', 
-  api_secret: '9655mLHWLrombzlO8Ueu9PFonag'
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 // CAMPGROUNDS INDEX
