@@ -2,31 +2,34 @@
 
 <div class="container">
     <h2 class="text-center">Edit your campground below</h1>
-    <form action="/campgrounds/<%= campground._id %>?_method=put" method="post" class="mx-auto customized-form">
+    <form action="/campgrounds/<%= campground._id %>?_method=put" method="post" class="mx-auto customized-form" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="a">Campground Name</label>
+        <label for="a">Current Name</label>
         <input id="a" type="text" class="form-control" value="<%= campground.name %>" name="campground[name]" required>
       </div>
       <div class="form-group">
-        <label for="b">Campground Image</label>
-        <input id="b" type="text" class="form-control" value="<%= campground.image %>" name="campground[image]" 
-               required pattern="(http)?s?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg)" 
-               title="The URL must be an image url">
-        <input type="file" id="image" name="image" accept="image/*" required>
+        <label for="b">Current Image</label>
+        <img id="b" src="<%= campground.image %>" alt="Campground Image" width="476" height="300"></img>
+        <input type="file" class="form-control" name="image" accept="image/*">
       </div>
       <div class="form-group">
-        <label for="c">Campground Description</label>
+        <label for="c">Current Description</label>
         <textarea id="c" class="form-control" name="campground[description]" required><%= campground.description %></textarea>
       </div>
       <div class="form-group">
-        <label for="d">Campground Location</label>
-        <input id="d" class="form-control" type="text" value="<%= campground.location %>" name="campground[location]" required>
+        <label for="d">Current Location</label>
+        <input id="d" type="text" class="form-control" value="<%= campground.location %>" name="campground[location]" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4 offset-1">
+          <button type="submit" class="btn btn-primary btn-block rounded">Save changes</button>
+        </div>
+        <div class="form-group col-4 offset-2">
+          <button type="reset" class="btn btn-secondary btn-block rounded">Cancel</button>
+        </div>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block rounded">Submit</button>
-      </div>
-      <div class="form-group">
-        <a href="/campgrounds/<%= campground._id %>" class="btn btn-secondary btn-block rounded" role="button" aria-pressed="true">Go Back</a>
+          <a href="/campgrounds/<%= campground._id %>" class="btn btn-secondary btn-block rounded" role="button" aria-pressed="true">Go Back</a>
       </div>
     </form>
 </div>
