@@ -11,8 +11,6 @@ router.get("/", function(req, res) {
 router.post("/send", function(req, res) {
     const captcha = req.body["g-recaptcha-response"];
     if (!captcha) {
-      console.log("This is wrong!");
-      console.log(req.body);
       req.flash("failure", "Please select captcha");
       return res.redirect("back");
     }
@@ -25,7 +23,7 @@ router.post("/send", function(req, res) {
       if (err) return console.log(err);
       // if not successful
       if (body.success !== undefined && !body.success) {
-        req.flash("error", "Captcha Failed");
+        req.flash("failure", "Captcha Failed");
         return res.redirect("/contact");
       }
       var smtpTransport = nodemailer.createTransport({
