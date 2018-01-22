@@ -1,8 +1,9 @@
 <% include ../partials/header %>
 
 <div class="container">
-  <h2 class="text-center">Create a new campground</h2>
   <form action="/campgrounds" method="post" class="mx-auto customized-form" enctype="multipart/form-data">
+    <h2 class="text-center">Create a new campground</h2>
+    <hr></hr>
     <div class="form-group">
       <label for="a">Campground Name</label>
       <input id="a" type="text" class="form-control" placeholder="Enter your campground name" name="campground[name]" required>

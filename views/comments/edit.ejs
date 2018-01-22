@@ -1,8 +1,9 @@
 <% include ../partials/header %>
 
 <div class="container">
-  <h2 class="text-center">Edit your comment below!</h1>
   <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=put" method="post" class="mx-auto customized-form">
+    <h2 class="text-center">Edit your comment below!</h1>
+    <hr></hr>
     <div class="form-group">
       <label for="a"><i class="fa fa-comment" aria-hidden="true"></i> Your current comment:</label>
       <textarea id="a" class="form-control" name="comment[text]" required><%= comment.text %></textarea>
