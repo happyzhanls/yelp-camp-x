@@ -60,7 +60,7 @@ hr {
   background-image: url(https://images.unsplash.com/photo-1515408320194-59643816c5b2) 
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://images.unsplash.com/photo-1491439176760-28b4d8675a59);
+  background-image: url(https://images.unsplash.com/photo-1485583739365-e768c38621b5);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 

@@ -1,7 +1,6 @@
 body {
-  background-image: url(https://images.unsplash.com/photo-1477696957384-3b1d731c4cff);
-  background-size: cover;
-  margin-top: 70px;
+  background-color: #dfc7b2;
+  margin: 70px auto;
   width: 100%;
   height: 100%;
 }
@@ -17,23 +16,15 @@ body {
 }
 
 .customized-form {
-  background-color: #dfc7b2;
+  background-color: white;
   width: 500px;
   padding: 5px 10px;
   border: 2px outset black;
 }
 
-.jumbotron {
-  background-color: transparent;
-}
-
-.jumbotron h1, .jumbotron p {
-  color: #dfc7b2;
-}
-
 #footer {
-  color: white;
-  background-color: transparent;
+  color: rgba(255,255,255,.7);
+  background-color: #343a40;
   text-align: center;
   padding: 10px;
   font-size: 1rem;
