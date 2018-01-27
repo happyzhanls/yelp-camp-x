@@ -57,10 +57,10 @@ hr {
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url(https://images.unsplash.com/photo-1515408320194-59643816c5b2) 
+  background-image: url(https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9);
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://images.unsplash.com/photo-1485583739365-e768c38621b5);
+  background-image: url(https://images.unsplash.com/photo-1478812954026-9c750f0e89fc);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
