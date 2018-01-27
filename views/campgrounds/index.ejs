@@ -12,13 +12,9 @@
           <img class="card-img-top" src=<%= campground.image %> alt="Card image cap">
           <div class="card-body">
             <h4 class="card-title text-center"><%= campground.name %></h4>
-            <h5 class="card-subtitle mb-2 text-muted" style="font-size: .7rem"><em>-- Submitted by <%= campground.author.username %></em></h5>
             <div class="row justify-content-center">
               <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">more info</a>
             </div>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last Updated <%= moment(campground.createdAt).fromNow() %></small>
           </div>
         </div>
       <% }) %>

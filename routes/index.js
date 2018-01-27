@@ -28,6 +28,7 @@ router.post("/signUp", function (req, res) {
       return res.redirect("/signUp");
     }
     passport.authenticate("local")(req, res, function () {
+      req.flash("success", "You have signed up successfully!");
       res.redirect("/campgrounds");
     });
   });

@@ -5,21 +5,33 @@
     <h2 class="text-center">Create a new campground</h2>
     <hr></hr>
     <div class="form-group">
-      <label for="a">Campground Name</label>
-      <input id="a" type="text" class="form-control" placeholder="Enter your campground name" name="campground[name]" required>
+      <label for="name">Campground Name</label>
+      <input id="name" type="text" class="form-control" placeholder="Enter your campground name" name="campground[name]" required>
     </div>
     <div class="form-group">
-      <label for="b">Campground Image</label>
-      <input id="b" type="file" class="form-control" name="image" accept="image/*" required>
+      <label for="image">Campground Image</label>
+      <input id="image" type="file" class="form-control" name="image" accept="image/*" required>
       <img id="imageShow" src="#" alt="Image Preview" width="476" height="300"></img>
     </div>
     <div class="form-group">
-      <label for="c">Campground Description</label>
-      <textarea id="c" class="form-control" placeholder="Enter your campground description" name="campground[description]" required title="The description cannot be empty"></textarea>
+      <label for="description">Campground Description</label>
+      <textarea id="description" class="form-control" placeholder="Enter your campground description" name="campground[description]" required title="The description cannot be empty"></textarea>
     </div>
     <div class="form-group">
-      <label for="d">Campground Location</label>
-      <input id="d" type="text" class="form-control" placeholder="Enter your campground location, eg: Yosemite National Park, CA" name="campground[location]" required>
+      <label for="cost">Campground Cost</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+        </div>
+        <input id="cost" class="form-control" type="number" name="campground[cost]" placeholder="Enter the cost per night" step="0.1" min="0" required>
+        <div class="input-group-append">
+          <span class="input-group-text">/night</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="location">Campground Location</label>
+      <input id="location" type="text" class="form-control" placeholder="Enter your campground location, eg: Yosemite National Park, CA" name="campground[location]" required>
     </div>
     <div class="form-row">
       <div class="form-group col-4 offset-1">

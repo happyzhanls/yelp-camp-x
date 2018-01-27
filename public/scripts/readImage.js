@@ -8,6 +8,6 @@ function readURL(input) {
   }
 }
 
-$("#b").change(function() {
+$("#image").change(function() {
   readURL(this);
 });

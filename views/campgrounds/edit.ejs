@@ -5,21 +5,33 @@
     <h2 class="text-center">Edit your campground below</h1>
     <hr></hr>
     <div class="form-group">
-      <label for="a">Current Name</label>
-      <input id="a" type="text" class="form-control" value="<%= campground.name %>" name="campground[name]" required>
+      <label for="name">Current Name</label>
+      <input id="name" type="text" class="form-control" value="<%= campground.name %>" name="campground[name]" required>
     </div>
     <div class="form-group">
-      <label for="b">Current Image</label>
-      <input id="b" type="file" class="form-control" name="image" accept="image/*">
+      <label for="image">Current Image</label>
+      <input id="image" type="file" class="form-control" name="image" accept="image/*">
       <img id="imageShow" src="<%= campground.image %>" alt="Image Preview" width="476" height="300"></img>
     </div>
     <div class="form-group">
-      <label for="c">Current Description</label>
-      <textarea id="c" class="form-control" name="campground[description]" required><%= campground.description %></textarea>
+      <label for="description">Current Description</label>
+      <textarea id="description" class="form-control" name="campground[description]" required><%= campground.description %></textarea>
     </div>
     <div class="form-group">
-      <label for="d">Current Location</label>
-      <input id="d" type="text" class="form-control" value="<%= campground.location %>" name="campground[location]" required>
+      <label for="cost">Current Cost</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+        </div>
+        <input id="cost" class="form-control" type="number" name="campground[cost]" value="<%= campground.cost %>" step="0.1" min="0" required>
+        <div class="input-group-append">
+          <span class="input-group-text">per night</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="location">Current Location</label>
+      <input id="location" type="text" class="form-control" value="<%= campground.location %>" name="campground[location]" required>
     </div>
     <div class="form-row">
       <div class="form-group col-4 offset-1">
