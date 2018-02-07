@@ -10,4 +10,7 @@ function readURL(input) {
 
 $("#image").change(function() {
   readURL(this);
+  $("#imageShow").show();
 });
+
+$("#imageShow").hide();
