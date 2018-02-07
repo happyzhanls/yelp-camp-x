@@ -23,20 +23,11 @@ nav {
 }
 
 /* using flex box */
-/*#footer {*/
-/*  color: rgba(255,255,255,.7);*/
-/*  background-color: #343a40;*/
-/*  text-align: center;*/
-/*  padding: 10px;*/
-/*  font-size: 1rem;*/
-/*}*/
-
 .whiteIcon {
   color: white;
 }
 
-ul,
-nav {
+ul {
 	list-style: none;
 }
 

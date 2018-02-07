@@ -22,7 +22,6 @@
               </button>
             </div>
             <div class="modal-body">
-              <div id="map"></div>
               <hr>
               <p>The Location is <em><%= campground.location %></em></p>
             </div>
@@ -39,6 +38,7 @@
       <% } %>
     </div>
   </div>
+  
   <div class="card">
     <div class="card-body">
       <!-- Create a new comment  -->
@@ -83,23 +83,11 @@
     var center = {lat: lat, lng: lng };
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
-        center: center,
-        scrollwheel: false
-    });
-    var contentString = `
-      <strong><%= campground.name %><br />
-      <%= campground.location %></strong>
-      <p><%= campground.description %></p>
-    `
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
+        center: center
     });
     var marker = new google.maps.Marker({
         position: center,
         map: map
-    });
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
     });
   }
 </script>

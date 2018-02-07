@@ -21,11 +21,11 @@
       <label for="cost">Current Cost</label>
       <div class="input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">$</span>
+          <button class="btn btn-outline-dark border-right-0" type="button" disabled>$</button>
         </div>
         <input id="cost" class="form-control" type="number" name="campground[cost]" value="<%= campground.cost %>" step="0.1" min="0" required>
         <div class="input-group-append">
-          <span class="input-group-text">per night</span>
+          <button class="btn btn-outline-dark border-left-0" type="button" disabled>/night</button>
         </div>
       </div>
     </div>
@@ -47,5 +47,5 @@
   </form>
 </div>
 
-<script src="/scripts/readImage.js"></script>
 <% include ../partials/footer %>
+<script src="/scripts/readImage.js"></script>
