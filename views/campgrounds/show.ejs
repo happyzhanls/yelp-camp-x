@@ -1,78 +1,91 @@
 <% include ../partials/header %>
 
 <div class="container">
-  <div class="card mb-3">
-    <img class="card-img-top" src="<%= campground.image %>" alt="Card image cap">
-    <div class="card-body">
-      <h4 class="card-title" style="color:SlateBlue"><%= campground.name %><span class="float-right">$<%= campground.cost %>/night</span></h4>
-      <h5 class="card-subtitle mb-2 text-muted">By <%= campground.author.username %></h5>
-      <p class="card-text"><%= campground.description %></p>
-      <div class="text-center">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#location">
-          <i class="fa fa-map-marker" aria-hidden="true"></i> View Campground Location
-        </button>
-      </div>
-      <div id="location" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="locationTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="locationTitle">Campground Location</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <hr>
-              <p>The Location is <em><%= campground.location %></em></p>
-            </div>
-          </div>
+  <div class="row">
+    <div class="col-4">
+      <p class="text-center">Location</p>
+      <div id="map" class="mb-3"></div>
+      <p class="text-center">Weather</p>
+      <p>Still under construction...</p>
+    </div>
+    <div class="col-8">
+      <div class="card mb-3">
+        <img class="card-img-top" src="<%= campground.image %>" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title" style="color:SlateBlue"><%= campground.name %><span class="float-right">$<%= campground.cost %>/night</span></h4>
+          <h5 class="card-subtitle mb-2 text-muted">By <%= campground.author.username %></h5>
+          <p class="card-text"><%= campground.description %></p>
+          <!--<div class="text-center">-->
+          <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#location">-->
+          <!--    <i class="fa fa-map-marker" aria-hidden="true"></i> View Campground Location-->
+          <!--  </button>-->
+          <!--</div>-->
+          <!--<div id="location" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="locationTitle" aria-hidden="true">-->
+          <!--  <div class="modal-dialog modal-dialog-centered" role="document">-->
+          <!--    <div class="modal-content">-->
+          <!--      <div class="modal-header">-->
+          <!--        <h5 class="modal-title" id="locationTitle">Campground Location</h5>-->
+          <!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+          <!--          <span aria-hidden="true">&times;</span>-->
+          <!--        </button>-->
+          <!--      </div>-->
+          <!--      <div class="modal-body">-->
+          <!--        <div id="map"></div>-->
+          <!--        <hr>-->
+          <!--        <p>The Location is <em>campground.location</em></p>-->
+          <!--      </div>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+          
+          <% if(currentUser && campground.author.id.equals(currentUser._id)) { %>
+            <hr>
+            <a class="btn btn-sm btn-warning d-inline p-2" href="/campgrounds/<%= campground._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+            <form id="inline-form" action="/campgrounds/<%= campground._id %>?_method=delete" method="post">
+              <button class="btn btn-sm btn-danger d-inline p-2" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+            </form>
+          <% } %>
         </div>
       </div>
       
-      <% if(currentUser && campground.author.id.equals(currentUser._id)) { %>
-        <hr>
-        <a class="btn btn-sm btn-warning d-inline p-2" href="/campgrounds/<%= campground._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-        <form id="inline-form" action="/campgrounds/<%= campground._id %>?_method=delete" method="post">
-          <button class="btn btn-sm btn-danger d-inline p-2" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-        </form>
-      <% } %>
-    </div>
-  </div>
-  
-  <div class="card">
-    <div class="card-body">
-      <!-- Create a new comment  -->
-      <form action="/campgrounds/<%= campground._id %>/comments" method="post">
-        <div class="form-group">
-          <label for="comment"><i class="fa fa-comment" aria-hidden="true"></i> Leave your comment below:</label>
-          <textarea class="form-control" rows="3" id="comment" name="comment[text]" placeholder="Tell us about what you're thinking!" required></textarea>
-        </div>
-        <div class="form-group mb-0">
-          <button type="submit" class="btn btn-primary">Comment</button>
-          <button type="reset" class="btn btn-secondary ml-3">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <hr>
-  <div class="card mb-3">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><%= campground.comments.length %> Comments</li>
-      <% campground.comments.forEach(function(comment) { %>
-      <li class="list-group-item">
-        <span><i class="fa fa-user" aria-hidden="true"></i> <%= comment.author.username %></span>
-        <span style="font-size:0.7rem;"><%= moment(comment.createdAt).fromNow() %></span>
-        <p><%= comment.text %></p>
-        <!-- mark: give authentication to editing and deleting comments -->
-        <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
-          <a class="btn btn-sm btn-warning d-inline p-2" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-          <form id="inline-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=delete" method="post">
-            <button class="btn btn-sm btn-danger d-inline p-2" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+      <div class="card">
+        <div class="card-body">
+          <!-- Create a new comment  -->
+          <form action="/campgrounds/<%= campground._id %>/comments" method="post">
+            <div class="form-group">
+              <label for="comment"><i class="fa fa-comment" aria-hidden="true"></i> Leave your comment below:</label>
+              <textarea class="form-control" rows="3" id="comment" name="comment[text]" placeholder="Tell us about what you're thinking!" required></textarea>
+            </div>
+            <div class="form-group mb-0">
+              <button type="submit" class="btn btn-primary">Comment</button>
+              <button type="reset" class="btn btn-secondary ml-3">Cancel</button>
+            </div>
           </form>
-        <% } %>
-      </li>
-      <% }); %>
-    </ul>
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div class="card mb-3">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= campground.comments.length %> Comments</li>
+          <% campground.comments.forEach(function(comment) { %>
+          <li class="list-group-item">
+            <span><i class="fa fa-user" aria-hidden="true"></i> <%= comment.author.username %></span>
+            <span style="font-size:0.7rem;"><%= moment(comment.createdAt).fromNow() %></span>
+            <p><%= comment.text %></p>
+            <!-- mark: give authentication to editing and deleting comments -->
+            <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+              <a class="btn btn-sm btn-warning d-inline p-2" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+              <form id="inline-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=delete" method="post">
+                <button class="btn btn-sm btn-danger d-inline p-2" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+              </form>
+            <% } %>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    </div>    
   </div>
 </div>
 
@@ -83,14 +96,27 @@
     var center = {lat: lat, lng: lng };
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
-        center: center
+        center: center,
+        scrollwheel: false
+    });
+    var contentString = `
+      <strong><%= campground.name %><br />
+      <%= campground.location %></strong>
+      <p><%= campground.description %></p>
+    `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
     });
     var marker = new google.maps.Marker({
         position: center,
         map: map
     });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
   }
 </script>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDarPMuMohrt3cB0l6vpQiJNs6HMvqq6FQ&callback=initMap"></script>
 
 <% include ../partials/footer %>
