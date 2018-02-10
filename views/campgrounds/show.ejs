@@ -95,14 +95,14 @@
     var lng = <%= campground.lng %>;
     var center = {lat: lat, lng: lng };
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
+        zoom: 14,
         center: center,
         scrollwheel: false
     });
     var contentString = `
-      <strong><%= campground.name %><br />
+      <strong><i class="fa fa-map-marker" aria-hidden="true"></i>
       <%= campground.location %></strong>
-      <p><%= campground.description %></p>
+      <p>Overview:<br>-\><%= campground.description %></p>
     `
     var infowindow = new google.maps.InfoWindow({
       content: contentString
