@@ -13,4 +13,6 @@ $("#image").change(function() {
   $("#imageShow").show();
 });
 
-$("#imageShow").hide();
+if ($("#imageShow").attr('src') === '#') {
+  $("#imageShow").hide();
+}

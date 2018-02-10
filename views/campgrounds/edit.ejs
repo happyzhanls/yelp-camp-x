@@ -11,7 +11,7 @@
     <div class="form-group">
       <label for="image">Current Image</label>
       <input id="image" type="file" class="form-control" name="image" accept="image/*">
-      <img id="imageShow" src="<%= campground.image %>" alt="Image Preview" width="476" height="300"></img>
+      <img id="imageShow" src="<%= campground.image %>" alt="Image Preview"></img>
     </div>
     <div class="form-group">
       <label for="description">Current Description</label>
@@ -47,5 +47,6 @@
   </form>
 </div>
 
+<!--<script src="/scripts/city_state.js"></script>-->
 <% include ../partials/footer %>
-<script src="/scripts/readImage.js"></script>
+<script src="/scripts/imagePreview.js"></script>
