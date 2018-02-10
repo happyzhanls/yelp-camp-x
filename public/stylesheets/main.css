@@ -17,9 +17,13 @@ nav {
 
 .customized-form {
   background-color: white;
-  width: 500px;
+  width: 50%;
   padding: 5px 10px;
-  border: 2px outset black;
+  border: 3px outset black;
+}
+
+#imageShow {
+  width: 100%;
 }
 
 /* using flex box */
