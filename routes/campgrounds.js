@@ -50,7 +50,8 @@ router.get("/new", middleware.isLoggedIn, function (req, res) {
 // CAMPGROUNDS CREATE
 router.post("/", middleware.isLoggedIn, upload.single('image'), function (req, res) {
   // geocoder configuration
-  geocoder.geocode(req.body.campground.location, function (err, data) {
+  var location = req.body.address + ", " + req.body.city_state + ", " + req.body.country;
+  geocoder.geocode(location, function (err, data) {
     if (err) return console.log(err);
     req.body.campground.lat = data.results[0].geometry.location.lat;
     req.body.campground.lng = data.results[0].geometry.location.lng;
