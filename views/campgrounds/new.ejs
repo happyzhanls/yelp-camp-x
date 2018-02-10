@@ -11,7 +11,7 @@
     <div class="form-group">
       <label for="image">Campground Image</label>
       <input id="image" type="file" class="form-control" name="image" accept="image/*" required>
-      <img id="imageShow" src="#" alt="Image Preview" width="476" height="300"></img>
+      <img id="imageShow" src="#" alt="Image Preview"></img>
     </div>
     <div class="form-group">
       <label for="description">Campground Description</label>
@@ -27,11 +27,26 @@
         <div class="input-group-append">
           <button class="btn btn-outline-dark border-left-0" type="button" disabled>/night</button>
         </div>
-      </div>      
+      </div>
+    </div>
+    <label for="location">Campground Location</label>
+    <div class="form-row" id="location">
+      <div class="form-group col-4">
+        <select id="region" onchange="set_country(this, country, city_state, address)" class="form-control custom-select">
+          <option selected>Select Region</option>
+        </select>
+      </div>
+      <div class="form-group col-4">
+        <select name="country" onchange="set_city_state(this, city_state, address)" class="form-control custom-select" disabled="disabled">
+        </select>
+      </div>
+      <div class="form-group col-4">
+        <select name="city_state" onchange="set_address(this, address)" class="form-control custom-select" disabled="disabled">
+        </select>
+      </div>
     </div>
     <div class="form-group">
-      <label for="location">Campground Location</label>
-      <input id="location" type="text" class="form-control" placeholder="Enter your campground location, eg: Yosemite National Park, CA" name="campground[location]" required>
+      <input name="address" type="text" class="form-control" disabled="disabled" required>
     </div>
     <div class="form-row">
       <div class="form-group col-4 offset-1">
@@ -46,5 +61,7 @@
     </div>
   </form>
 </div>
+
+<script src="/scripts/city_state.js"></script>
 <% include ../partials/footer %>
-<script src="/scripts/readImage.js"></script>
+<script src="/scripts/imagePreview.js"></script>
