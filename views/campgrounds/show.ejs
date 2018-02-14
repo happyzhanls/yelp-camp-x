@@ -3,18 +3,20 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5 col-lg-4">
-      <p class="text-center">Google Maps APIs</p>
-      <div id="map" class="mb-3"></div>
-      <p class="text-center">Weather APIs</p>
-      <p>Still under construction...</p>
+      <div class="border rounded mb-2">
+        <p class="text-center border rounded mb-0">Location</p>
+        <div id="map" class="border rounded"></div>
+      </div>
+      <div class="border rounded mb-4">
+        <p class="text-center border rounded mb-0">Weather</p>
+        <p class="border rounded-top mb-0">Still under construction...</p>
+      </div>
     </div>
     <div class="col-md-7 col-lg-8">
       <div class="card mb-3">
         <img class="card-img-top" src="<%= campground.image %>" alt="Card image cap">
         <div class="card-body">
-          <h4 class="card-title" style="color:SlateBlue"><%= campground.name %><span class="float-right">$<%= campground.cost %>/night</span></h4>
-          <h5 class="card-subtitle mb-2 text-muted">By <%= campground.author.username %></h5>
-          <p class="card-text"><%= campground.description %></p>
+          <h5 class="card-title font-weight-bold mb-0"><%= campground.name %></h4>
           <!--<div class="text-center">-->
           <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#location">-->
           <!--    <i class="fa fa-map-marker" aria-hidden="true"></i> View Campground Location-->
@@ -37,18 +39,22 @@
           <!--    </div>-->
           <!--  </div>-->
           <!--</div>-->
-          
-          <% if(currentUser && campground.author.id.equals(currentUser._id)) { %>
-            <hr>
-            <a class="btn btn-sm btn-warning d-inline p-2" href="/campgrounds/<%= campground._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-            <form id="inline-form" action="/campgrounds/<%= campground._id %>?_method=delete" method="post">
-              <button class="btn btn-sm btn-danger d-inline p-2" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-            </form>
-          <% } %>
         </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-muted"><mark>Description:</mark> <%= campground.description %></li>
+          <li class="list-group-item"><small class="text-muted"><mark>Price:</mark> $<%= campground.cost %>/night</small></li>
+        </ul>
+        <% if(currentUser && campground.author.id.equals(currentUser._id)) { %>
+        <div class="m-2">
+          <a class="btn btn-sm btn-warning d-inline p-2" href="/campgrounds/<%= campground._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+          <form id="inline-form" action="/campgrounds/<%= campground._id %>?_method=delete" method="post">
+            <button class="btn btn-sm btn-danger d-inline p-2" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+          </form>
+        </div>
+        <% } %>
       </div>
       
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-body">
           <!-- Create a new comment  -->
           <form action="/campgrounds/<%= campground._id %>/comments" method="post">
@@ -57,16 +63,13 @@
               <textarea class="form-control" rows="3" id="comment" name="comment[text]" placeholder="Tell us about what you're thinking!" required></textarea>
             </div>
             <div class="form-group mb-0">
-              <button type="submit" class="btn btn-primary">Comment</button>
-              <button type="reset" class="btn btn-secondary ml-3">Cancel</button>
+              <button type="submit" class="btn btn-primary p-2">Comment</button>
+              <button type="reset" class="btn btn-secondary p-2">Cancel</button>
             </div>
           </form>
         </div>
       </div>
-      
-      <hr>
-      
-      <div class="card mb-3">
+      <div class="card">
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><%= campground.comments.length %> Comments</li>
           <% campground.comments.forEach(function(comment) { %>
@@ -76,10 +79,10 @@
             <p><%= comment.text %></p>
             <!-- mark: give authentication to editing and deleting comments -->
             <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
-              <a class="btn btn-sm btn-warning d-inline p-2" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-              <form id="inline-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=delete" method="post">
-                <button class="btn btn-sm btn-danger d-inline p-2" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-              </form>
+                <a class="btn btn-sm btn-warning d-inline p-2" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                <form id="inline-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=delete" method="post">
+                  <button class="btn btn-sm btn-danger d-inline p-2" type="submit"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                </form>
             <% } %>
           </li>
           <% }); %>
