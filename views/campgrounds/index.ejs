@@ -1,25 +1,29 @@
 <% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/index.css">
 
 <div class="container">
   <div class="jumbotron">
-    <h1>Welcome to the campgrounds!</h1>
+    <h1><i class="fa fa-camera-retro" aria-hidden="true"></i> The campground gallery</h1>
     <p class="lead">View the campgrounds from all over the world!</p>
-    <a class="btn btn-success mx-auto" href="/campgrounds/new">Add a new campground</a>      
-    <hr class="my-4">
-    <div class="card-columns">
-      <% campgrounds.forEach(function(campground) { %>
-        <div class="card m-2">
-          <img class="card-img-top" src=<%= campground.image %> alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title text-center"><%= campground.name %></h4>
-            <div class="row justify-content-center">
-              <a href="/campgrounds/<%= campground._id %>" class="btn btn-info">more info</a>
-            </div>
+    <a class="btn btn-info mx-auto" href="/campgrounds/new">Add a new campground</a>      
+  </div>
+  
+  <div class="card-columns">
+    <% campgrounds.forEach(function(campground) { %>
+      <div class="card border-light m-2">
+        <img class="card-img-top" src=<%= campground.image %> alt="Card image cap">
+        <div class="card-body">
+          <h6 class="card-title text-center font-weight-bold"><%= campground.name %></h6>
+          <h6 class="card-title text-center text-muted"><%= campground.author.username %></h6>
+          <h6 class="card-title text-center">$<%= campground.cost %>/night</h6>
+          <div class="row justify-content-center">
+            <a href="/campgrounds/<%= campground._id %>" class="btn btn-sm btn-outline-success">More Info</a>
           </div>
         </div>
-      <% }) %>
-    </div>  
-  </div>
+      </div>
+    <% }) %>
+  </div>  
+  
 </div>
 
 <% include ../partials/footer %>
