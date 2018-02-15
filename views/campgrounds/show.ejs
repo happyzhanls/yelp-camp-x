@@ -14,34 +14,10 @@
     </div>
     <div class="col-md-7 col-lg-8">
       <div class="card mb-3">
+        <div class="card-header font-weight-bold" style="font-size: 1.4em"><%= campground.name %></div>
         <img class="card-img-top" src="<%= campground.image %>" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold mb-0"><%= campground.name %></h4>
-          <!--<div class="text-center">-->
-          <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#location">-->
-          <!--    <i class="fa fa-map-marker" aria-hidden="true"></i> View Campground Location-->
-          <!--  </button>-->
-          <!--</div>-->
-          <!--<div id="location" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="locationTitle" aria-hidden="true">-->
-          <!--  <div class="modal-dialog modal-dialog-centered" role="document">-->
-          <!--    <div class="modal-content">-->
-          <!--      <div class="modal-header">-->
-          <!--        <h5 class="modal-title" id="locationTitle">Campground Location</h5>-->
-          <!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-          <!--          <span aria-hidden="true">&times;</span>-->
-          <!--        </button>-->
-          <!--      </div>-->
-          <!--      <div class="modal-body">-->
-          <!--        <div id="map"></div>-->
-          <!--        <hr>-->
-          <!--        <p>The Location is <em>campground.location</em></p>-->
-          <!--      </div>-->
-          <!--    </div>-->
-          <!--  </div>-->
-          <!--</div>-->
-        </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item text-muted"><mark>Description:</mark> <%= campground.description %></li>
+          <li class="list-group-item text-muted"><mark>Description:</mark> <%- campground.description %></li>
           <li class="list-group-item"><small class="text-muted"><mark>Price:</mark> $<%= campground.cost %>/night</small></li>
         </ul>
         <% if(currentUser && campground.author.id.equals(currentUser._id)) { %>
